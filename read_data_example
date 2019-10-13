@@ -1,29 +1,30 @@
 //--------------------------------Read data----------------------------------
 //listens for changes in your database node and sends a response.
 ****database referencing variable****.on("child_added", snap => {
-		let users = snap.val();		
-		let key = snap.key;		
+	let users = snap.val();		
+	let key = snap.key;		
     /// create cell td
-		let $td1 = document.createElement('td')
+	let $td1 = document.createElement('td')
 
     /// append data that read from databse to cell $td1
-		$td1.appendChild(document.createTextNode(users.****data attribute****))
+	$td1.appendChild(document.createTextNode(users.****data attribute****))
 				
-		/// create cell for delete icon
-		let $td4 = document.createElement('td')
-		let deleteIconUI = document.createElement("a");
-		deleteIconUI.className += "glyphicon glyphicon-trash";
-		deleteIconUI.setAttribute("userid", key);
-		deleteIconUI.setAttribute("onClick", "window.location.reload()");
-		deleteIconUI.addEventListener("click", deleteButtonClicked)
-		$td4.appendChild(deleteIconUI)
+    /// create cell for delete icon
+	let $td4 = document.createElement('td')
+	let deleteIconUI = document.createElement("a");
+	deleteIconUI.className += "glyphicon glyphicon-trash";
+	/// create attribute of user id for reference in deletion
+	deleteIconUI.setAttribute("****** attribute of user id ******", key);
+	deleteIconUI.setAttribute("onClick", "window.location.reload()");
+	deleteIconUI.addEventListener("click", deleteButtonClicked)
+	$td4.appendChild(deleteIconUI)
 		
     /// create table row 
-		let $tr = document.createElement('tr')
+	let $tr = document.createElement('tr')
     /// append created cell to row
-		$tr.appendChild($td1)
-		$tr.appendChild($td4);
+	$tr.appendChild($td1)
+	$tr.appendChild($td4);
 		
     /// append created row to table
-		$tableref.appendChild($tr)			
+	$tableref.appendChild($tr)			
 	});
