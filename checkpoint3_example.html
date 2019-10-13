@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test Firebase Realtime Database</title>
+  <meta charset="utf-8">
+  <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-database.js"></script>
+
+  <script>
+		window.onload = function(){
+		
+		// Initialize Firebase
+		var config = {
+			apiKey: "////////apiKey///////",
+			authDomain: "////////authDomain///////",
+			databaseURL: "///////databaseURL////////",
+			projectId: "////////projectId///////",
+			storageBucket: "////////storageBucket///////",
+			messagingSenderId: "///////messagingSenderId////////"
+		};
+			
+		// Initialize Firebase
+  	firebase.initializeApp(firebaseConfig);
+ 		firebase.analytics();
+  
+    // Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
+  	// Reference messages collection
+  	var database = firebase.database().ref();  
+		var ref = database.child('users');
+		
+		const $tableref = document.getElementById("displayTable");
+			
+		//creat function to Read data
+		
+    //creat function to Insert data
+    
+    //creat function to Delete data
+    
+    
+  </script>
+</head>
+<body oncontextmenu="return false">
+	<div class="container">
+		<div class="page-header">
+		<h1>Realtime Database Firebase example</h1>     
+		</div>
+		<table  class="table table-striped">
+			<thead>
+			  <tr>
+				<th>Username</th>
+				<th>E-mail</th>
+				<th>Profile-Picture</th>
+				<th>Delete</th>
+			  </tr>
+			</thead>
+			<tbody id="displayTable">
+			</tbody>
+		</table>
+		<div class="alert alert-danger" role="alert">
+			<b>Do not delete original data! Please add your own data for deleting!</b>
+		</div>
+		<section id="add-user-module" >
+		  <form>
+			<hr>
+			<h4>Add User</h4>
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="input" data-key='username' class="form-control user-input" id="myInput">
+			</div>
+			<div class="form-group">
+				<label for="email">E-mail:</label>
+				<input type="email" data-key='email' class="form-control user-input" id="myInput">
+			</div>
+			<div class="form-group">
+				<label for="profile_picture">Profile Picture (URL):</label>
+				<input type="input" data-key='profile_picture'  class="form-control user-input" id="myInput">
+			</div>
+			<button type='button' class="btn btn-default" id="add-user-btn">add user</button>
+		  </form>
+		</section>
+	</div>
+</body>
+</html>
