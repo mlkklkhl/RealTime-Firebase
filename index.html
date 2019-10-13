@@ -34,28 +34,29 @@
   
   		// Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
   		// Reference messages collection
-  		var refDB = firebase.database().ref('users');
+  		var database = firebase.database().ref();  
+		var ref = database.child('users');
 		
-			const $tableref = document.getElementById("displayTable");
+		const $tableref = document.getElementById("displayTable");
 			
-			//Read data
-			//listens for changes in your database node and sends a response.
-			refDB.on("child_added", snap => {
-				let users = snap.val();				   
-				let $td1 = document.createElement('td')
-				let $td2 = document.createElement('td')
-				let $td3 = document.createElement('td')
+		//Read data
+		//listens for changes in your database node and sends a response.
+		ref.on("child_added", snap => {
+			let users = snap.val();				   
+			let $td1 = document.createElement('td')
+			let $td2 = document.createElement('td')
+			let $td3 = document.createElement('td')
 
-				$td1.appendChild(document.createTextNode(users.username))
-				$td2.appendChild(document.createTextNode(users.email))
-				$td3.appendChild(document.createTextNode(users.profile_picture))
+			$td1.appendChild(document.createTextNode(users.username))
+			$td2.appendChild(document.createTextNode(users.email))
+			$td3.appendChild(document.createTextNode(users.profile_picture))
 					
-				let $tr = document.createElement('tr')
-				$tr.appendChild($td1)
-				$tr.appendChild($td2)
-				$tr.appendChild($td3)
+			let $tr = document.createElement('tr')
+			$tr.appendChild($td1)
+			$tr.appendChild($td2)
+			$tr.appendChild($td3)
 
-				$tableref.appendChild($tr)			
+			$tableref.appendChild($tr)			
 			});
 		}
   </script>
