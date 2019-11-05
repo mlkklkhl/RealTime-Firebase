@@ -1,11 +1,11 @@
 	//---------------------------------delete-------------------------------------
-  /// create delete function
+        /// create delete function
 	function deleteButtonClicked(e) {
 		e.stopPropagation();
-    /// get data id which selected by user
-		var userID = e.target.getAttribute("****** attribute of user id ******");
-    /// find that selected id in database
+    		/// get data id which selected by user
+		var userID = e.target.getAttribute("userid");
+    		/// find that selected id in database
 		const userRef = database.child('users/' + userID);			
-    /// delete that data from database
+    		/// delete that data from database
 		userRef.remove();
 	}
