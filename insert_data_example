@@ -1,10 +1,10 @@
   //--------------------------------insert-------------------------------------
   /// creat insert button
-	const addUserBtnUI = document.getElementById("add-user-btn");
-	addUserBtnUI.addEventListener("click", addUserBtnClicked);
+  const addUserBtnUI = document.getElementById("add-user-btn");
+  addUserBtnUI.addEventListener("click", addUserBtnClicked);
 	
   /// create function for data insertion
-	function addUserBtnClicked() {
+  function addUserBtnClicked() {
 	const usersRef = database.child('users');
 	const addUserInputsUI = document.getElementsByClassName("user-input");
 				
@@ -13,8 +13,8 @@
 				
 	// loop through View to get the data for the model 
 	for (let i = 0, len = addUserInputsUI.length; i < len; i++) {
-    /// get data from html form using attribute name
-		let key = addUserInputsUI[i].getAttribute('****** attribute name ******');
+    		/// get data from html form using attribute name
+		let key = addUserInputsUI[i].getAttribute('userid');
 		let value = addUserInputsUI[i].value;
 		newUser[key] = value;
 	}
