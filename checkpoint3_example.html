@@ -16,30 +16,30 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
 
   <script>
-		window.onload = function(){
-		
-		// Initialize Firebase
-		var config = {
-			apiKey: "////////apiKey///////",
-			authDomain: "////////authDomain///////",
-			databaseURL: "///////databaseURL////////",
-			projectId: "////////projectId///////",
-			storageBucket: "////////storageBucket///////",
-			messagingSenderId: "///////messagingSenderId////////"
-		};
-			
-		// Initialize Firebase
-  	firebase.initializeApp(firebaseConfig);
- 		firebase.analytics();
+    window.onload = function(){
+
+    // Initialize Firebase
+    var config = {
+	apiKey: "////////apiKey///////",
+	authDomain: "////////authDomain///////",
+	databaseURL: "///////databaseURL////////",
+	projectId: "////////projectId///////",
+	storageBucket: "////////storageBucket///////",
+	messagingSenderId: "///////messagingSenderId////////"
+    };
+  
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   
     // Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
-  	// Reference messages collection
-  	var database = firebase.database().ref();  
-		var ref = database.child('users');
+    // Reference messages collection
+    var database = firebase.database().ref();  
+    var ref = database.child('users');
 		
-		const $tableref = document.getElementById("displayTable");
+    const $tableref = document.getElementById("displayTable");
 			
-		//creat function to Read data
+    //creat function to Read data
 		
     //creat function to Insert data
     
