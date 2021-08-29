@@ -14,7 +14,7 @@
 	// loop through View to get the data for the model 
 	for (let i = 0, len = addUserInputsUI.length; i < len; i++) {
     		/// get data from html form using attribute name
-		let key = addUserInputsUI[i].getAttribute('userid');
+		let key = addUserInputsUI[i].getAttribute('data-key');
 		let value = addUserInputsUI[i].value;
 		newUser[key] = value;
 	}
