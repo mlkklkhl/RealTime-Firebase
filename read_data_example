@@ -7,14 +7,16 @@
 	let $td1 = document.createElement('td')
 
     	/// append data that read from databse to cell $td1
-	$td1.appendChild(document.createTextNode(users.****data attribute****))
+	$td1.appendChild(document.createTextNode(users.username))
+	$td2.appendChild(document.createTextNode(users.email))
+	$td3.appendChild(document.createTextNode(users.profile_picture))
 				
     	/// create cell for delete icon
 	let $td4 = document.createElement('td')
 	let deleteIconUI = document.createElement("a");
 	deleteIconUI.className += "glyphicon glyphicon-trash";
 	/// create attribute of user id for reference in deletion
-	deleteIconUI.setAttribute("userid, key);
+	deleteIconUI.setAttribute("userid", key);
 	deleteIconUI.setAttribute("onClick", "window.location.reload()");
 	deleteIconUI.addEventListener("click", deleteButtonClicked)
 	$td4.appendChild(deleteIconUI)
