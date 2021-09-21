@@ -47,22 +47,11 @@
 		$td2.appendChild(document.createTextNode(childData.email))
 		$td3.appendChild(document.createTextNode(childData.profile_picture))
 
-		/// create cell for delete icon
-		let $td4 = document.createElement('td')
-		let deleteIconUI = document.createElement("a");
-		deleteIconUI.className += "glyphicon glyphicon-trash";
-		/// create attribute of user id for reference in deletion
-		deleteIconUI.setAttribute("userid", data.key);
-		deleteIconUI.setAttribute("onClick", "window.location.reload()");
-		deleteIconUI.addEventListener("click", deleteButtonClicked)
-		$td4.appendChild(deleteIconUI)
-
 		let $tr = document.createElement('tr')
 		$tr.setAttribute("id",data.key);
 		$tr.appendChild($td1)
 		$tr.appendChild($td2)
 		$tr.appendChild($td3)
-		$tr.appendChild($td4)
 
 		$tableref.appendChild($tr)	
 	});
