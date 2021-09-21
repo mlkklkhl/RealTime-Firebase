@@ -10,66 +10,64 @@
   
   <script type="module">
   
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
-		import { getDatabase, ref, child, get, onValue  } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
-		
-		window.onload = function(){
-		
-		// Initialize Firebase
-		var firebaseConfig = {
-		  apiKey: "////////////////////////////////////////",
-		  authDomain: "////////////////////////////////////////",
-		  databaseURL: "////////////////////////////////////////",
-		  projectId: "////////////////////////////////////////",
-		  storageBucket: "////////////////////////////////////////",
-		  messagingSenderId: "////////////////////////////////////////",
-		  appId: "////////////////////////////////////////"
-		};
-			
-		// Initialize Firebase
-		const app = initializeApp(firebaseConfig);
-  
-  		// Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
-  		// Reference messages collection
-		const database = ref(getDatabase()); 
-		
-		const $tableref = document.getElementById("displayTable");
-		
-		
-		get(child(database, 'users')).then((snap) => {
-		  if (snap.exists()) {
-			let users = snap.val();	
-			console.log(users);
-			
-			snap.forEach((childSnapshot) => {
-				const childKey = childSnapshot.key;
-				const childData = childSnapshot.val();
-				
-				let $td1 = document.createElement('td')
-				let $td2 = document.createElement('td')
-				let $td3 = document.createElement('td')
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+	import { getDatabase, ref, set, push, update, remove, onChildAdded } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
 
-				$td1.appendChild(document.createTextNode(childData.username))
-				$td2.appendChild(document.createTextNode(childData.email))
-				$td3.appendChild(document.createTextNode(childData.profile_picture))
-						
-				let $tr = document.createElement('tr')
-				$tr.appendChild($td1)
-				$tr.appendChild($td2)
-				$tr.appendChild($td3)
+	window.onload = function(){
 
-				$tableref.appendChild($tr)	
-			 });
-			
-		  } else {
-			console.log("No data available");
-		  }
-		}).catch((error) => {
-		  console.error(error);
-		});
-		
-		}
-  </script>
+	// Initialize Firebase
+	var firebaseConfig = {
+	  apiKey: "////////////////////////////////////////",
+	  authDomain: "////////////////////////////////////////",
+	  databaseURL: "////////////////////////////////////////",
+	  projectId: "////////////////////////////////////////",
+	  storageBucket: "////////////////////////////////////////",
+	  messagingSenderId: "////////////////////////////////////////",
+	  appId: "////////////////////////////////////////"
+	};
+
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+
+	// Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
+	// Reference messages collection
+	const database = ref(getDatabase()); 
+
+	const $tableref = document.getElementById("displayTable");
+
+	onChildAdded(database, (data) => {
+
+		let childData = data.val();
+
+		let $td1 = document.createElement('td')
+		let $td2 = document.createElement('td')
+		let $td3 = document.createElement('td')
+
+		$td1.appendChild(document.createTextNode(childData.username))
+		$td2.appendChild(document.createTextNode(childData.email))
+		$td3.appendChild(document.createTextNode(childData.profile_picture))
+
+		/// create cell for delete icon
+		let $td4 = document.createElement('td')
+		let deleteIconUI = document.createElement("a");
+		deleteIconUI.className += "glyphicon glyphicon-trash";
+		/// create attribute of user id for reference in deletion
+		deleteIconUI.setAttribute("userid", data.key);
+		deleteIconUI.setAttribute("onClick", "window.location.reload()");
+		deleteIconUI.addEventListener("click", deleteButtonClicked)
+		$td4.appendChild(deleteIconUI)
+
+		let $tr = document.createElement('tr')
+		$tr.setAttribute("id",data.key);
+		$tr.appendChild($td1)
+		$tr.appendChild($td2)
+		$tr.appendChild($td3)
+		$tr.appendChild($td4)
+
+		$tableref.appendChild($tr)	
+	});
+    }
+    </script>
 </head>
 <body>
 	<div class="container">
