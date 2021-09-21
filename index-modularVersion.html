@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Test Firebase Realtime Database</title>
+  
+  <script type="module">
+  
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+		import { getDatabase, ref, child, get, onValue  } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
+		
+		window.onload = function(){
+		
+		// Initialize Firebase
+		var firebaseConfig = {
+		  apiKey: "////////////////////////////////////////",
+		  authDomain: "////////////////////////////////////////",
+		  databaseURL: "////////////////////////////////////////",
+		  projectId: "////////////////////////////////////////",
+		  storageBucket: "////////////////////////////////////////",
+		  messagingSenderId: "////////////////////////////////////////",
+		  appId: "////////////////////////////////////////"
+		};
+			
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+  
+  		// Get a reference to the database service for =>>> 'users' collection (according to your realtime database)
+  		// Reference messages collection
+		const database = ref(getDatabase()); 
+		
+		const $tableref = document.getElementById("displayTable");
+		
+		
+		get(child(database, 'users')).then((snap) => {
+		  if (snap.exists()) {
+			let users = snap.val();	
+			console.log(users);
+			
+			snap.forEach((childSnapshot) => {
+				const childKey = childSnapshot.key;
+				const childData = childSnapshot.val();
+				
+				let $td1 = document.createElement('td')
+				let $td2 = document.createElement('td')
+				let $td3 = document.createElement('td')
+
+				$td1.appendChild(document.createTextNode(childData.username))
+				$td2.appendChild(document.createTextNode(childData.email))
+				$td3.appendChild(document.createTextNode(childData.profile_picture))
+						
+				let $tr = document.createElement('tr')
+				$tr.appendChild($td1)
+				$tr.appendChild($td2)
+				$tr.appendChild($td3)
+
+				$tableref.appendChild($tr)	
+			 });
+			
+		  } else {
+			console.log("No data available");
+		  }
+		}).catch((error) => {
+		  console.error(error);
+		});
+		
+		}
+  </script>
+</head>
+<body>
+	<div class="container">
+		<h1>Firebase Realtime Database example</h1>
+		<table id="displayTable" class="table table-striped">
+			<thead>
+			  <tr>
+				<th>Username</th>
+				<th>E-mail</th>
+				<th>Profile-Picture</th>
+			  </tr>
+			</thead>
+			<tbody>
+				<!-- Display Data here -->
+			</tbody>
+		  </table>
+	</div>
+</body>
+</html>
